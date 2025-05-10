@@ -1,0 +1,78 @@
+/* Login Page Styles */
+.login-page {
+    padding: 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.auth-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    overflow: hidden;
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: background-color 0.3s;
+}
+
+.auth-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.auth-form-container {
+    padding: 2rem;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.auth-message {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.auth-message.error {
+    color: var(--error-color);
+}
+
+.auth-message.success {
+    color: var(--success-color);
+}
+
+/* Dark Theme Overrides */
+.dark .auth-tab:not(.active) {
+    color: var(--text-color);
+}
+.auth-form {
+    display: none;
+}
+.auth-form.active {
+    display: block;
+}

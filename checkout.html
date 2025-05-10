@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopEase Hub</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="dark-theme.css" id="theme-style" disabled>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1><a href="index.html" class="logo-link">ShopEase Hub</a></h1>
+        </div>
+        <div class="nav-icons">
+            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="checkout-page">
+        <div class="checkout-container">
+            <div class="checkout-left">
+                <section class="checkout-section">
+                    <h2>Shipping Information</h2>
+                    <form id="shipping-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pincode">Pincode</label>
+                                <input type="text" id="pincode" required>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="checkout-section">
+                    <h2>Delivery Options</h2>
+                    <div class="delivery-options">
+                        <div class="delivery-option">
+                            <input type="radio" name="delivery" id="standard" value="standard" checked>
+                            <label for="standard">
+                                <div class="delivery-option-info">
+                                    <span class="delivery-type">Standard Delivery</span>
+                                    <span class="delivery-date">Get by <span id="standard-date"></span></span>
+                                    <span class="delivery-price">FREE</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="delivery-option">
+                            <input type="radio" name="delivery" id="express" value="express">
+                            <label for="express">
+                                <div class="delivery-option-info">
+                                    <span class="delivery-type">Express Delivery</span>
+                                    <span class="delivery-date">Get by <span id="express-date"></span></span>
+                                    <span class="delivery-price">₹100</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="delivery-option">
+                            <input type="radio" name="delivery" id="same-day" value="same-day">
+                            <label for="same-day">
+                                <div class="delivery-option-info">
+                                    <span class="delivery-type">Same Day Delivery</span>
+                                    <span class="delivery-date">Get by Today</span>
+                                    <span class="delivery-price">₹200</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="checkout-section">
+                    <h2>Payment Method</h2>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card" checked>
+                            <span class="payment-icon"><i class="fas fa-credit-card"></i></span>
+                            <span>Credit/Debit Card</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="upi">
+                            <span class="payment-icon"><i class="fas fa-mobile-alt"></i></span>
+                            <span>UPI</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod">
+                            <span class="payment-icon"><i class="fas fa-money-bill-wave"></i></span>
+                            <span>Cash on Delivery</span>
+                        </label>
+                    </div>
+                    <div id="card-payment" class="payment-details">
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="upi-payment" class="payment-details" style="display: none;">
+                        <div class="form-group">
+                            <label for="upi-id">UPI ID</label>
+                            <input type="text" id="upi-id" placeholder="example@upi">
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="checkout-right">
+                <section class="checkout-section order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="order-items"></div>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="order-subtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount:</span>
+                            <span id="order-discount">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span id="order-shipping">₹0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="order-total">₹0.00</span>
+                        </div>
+                    </div>
+                    <button id="place-order-btn" class="primary-btn">Place Order</button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-confirmation">&times;</span>
+            <div class="confirmation-content">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h2>Order Placed Successfully!</h2>
+                <p>Thank you for shopping with ShopEase Hub!</p>
+                <p>Your order has been placed successfully. Order ID: <span id="order-id"></span></p>
+                <p>A confirmation email has been sent to <span id="confirmation-email"></span></p>
+                <p>Estimated delivery: <span id="delivery-date"></span></p>
+                <button id="continue-shopping-btn" class="primary-btn">Continue Shopping</button>
+                <button id="log-out" class="primary-btn">Log-Out</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ShopEase Hub</h3>
+                <p>Your one-stop destination for all your shopping needs.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#products">Products</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <a href="mailto:support@shopeasehub.com"><i class="fas fa-envelope"></i> support@shopeasehub.com</a><br>
+                <a href="tel:+91 9876543210"><i class="fas fa-phone"></i> +91 9876543210</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Developed by CSE 1st Year Students:</p>
+            <p>Dharshanashri S | S B Priyadharshika | Abinayan</p>
+            <p>&copy; 2025 ShopEase Hub. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- Add this to the header section, inside the nav-icons div -->
+<div class="user-account" id="user-account">
+    <a href="login.html" class="login-btn">Login</a>
+</div>
+
+<!-- Add this right before the closing </body> tag -->
+    <!--<script src="user.js"></script>-->
+    <script src="products.js"></script>
+    <script src="theme.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
